@@ -35,4 +35,5 @@ print("Player Started")
 while True:
     time.sleep(1)
 
+
 #subprocess.run(["omxplayer", "/home/pi/bigbuckbunny_30sclip.mp4"])
