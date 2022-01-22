@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import subprocess
+import time
 
 #############################################################
 # Functions
@@ -30,5 +31,8 @@ class simplePiMediaPlayer:
 
 player = simplePiMediaPlayer(5, 6, 13, 19, 26)
 
+print("Player Started")
+while True:
+    time.sleep(1)
 
 #subprocess.run(["omxplayer", "/home/pi/bigbuckbunny_30sclip.mp4"])
