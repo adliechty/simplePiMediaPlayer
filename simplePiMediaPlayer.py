@@ -1,9 +1,8 @@
 import RPi.GPIO as GPIO
 import subprocess
 import time
-from pynput import keyboard
-from pynput.keyboard import Key
 import os
+import curses
 
 #############################################################
 # Functions
@@ -20,69 +19,69 @@ class simplePiMediaPlayer:
         self.RIGTH = RIGHT
         self.PLAY  = PLAY
         self.ALLPINS = [UP, DOWN, LEFT, RIGHT, PLAY]
-        self.curDir = "/media/pi"
+        self.curDir = "/media/usb0"
         self.curSelection = 0
-        self.updateSelection()
         self.done = False
 
-        #Configure GPIO Pins
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
-        for pin in self.ALLPINS:
-            GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-            GPIO.add_event_detect(pin, GPIO.BOTH, callback=self.button_callback)
-
-        subprocess.run(["stty", "-echo"])
-        #We stop listening when starting the video so that video navigation does not affect file navigation.
-        while self.done == False:
-            with keyboard.Listener(on_press=self.on_press) as self.listener:
-                self.listener.join()
-        subprocess.run(["stty", "echo"])
+        self.key = ""
+        # create curses window (blank screen with text)
+        self.win = curses.initscr()
+        self.win.keypad(True)
+        self.win.nodelay(False)
+        self.win.clear()
+        self.updateSelection()
+        while (1):
+          key = self.win.getch()
+          self.on_press(key)
+          if self.done:
+              break
+        curses.endwin()
 
 
     def updateSelection(self):
-        os.system('clear')
-        print("simple media player.  Push h for help")
-        print("-----------------------------")
-        print(self.curDir)
-        print("-----------------------------")
+        self.win.clear()
+        self.win.addstr(str(self.key))
+        self.win.addstr("simple media player.  Push h for help\n")
+        self.win.addstr("-----------------------------\n")
+        self.win.addstr(self.curDir + "\n")
+        self.win.addstr("-----------------------------\n")
         i = 0
         for f in os.listdir(self.curDir):
             if i == self.curSelection:
-                print("    **" + f)
+                self.win.addstr("    **" + f + "\n")
             else:
-                print("    " + f)
+                self.win.addstr("    " + f + "\n")
             i = i + 1
 
     def on_press(self, key):
-        #print("Key " + str(key))
-      #try:
-        if key == Key.up:
+        self.key = key
+        if key == curses.KEY_UP:
             if self.curSelection > 0:
                 self.curSelection -= 1
-        elif key == Key.down:
+        elif key == curses.KEY_DOWN:
             if self.curSelection < len(os.listdir(self.curDir)) - 1:
                 self.curSelection += 1
-        elif key == Key.left:
+        elif key == curses.KEY_LEFT:
             self.curDir = os.path.dirname(self.curDir)
             self.curSelection = 0
-        elif key == Key.enter or key == Key.right:
+        elif key == curses.KEY_ENTER or key == curses.KEY_RIGHT:
             files = os.listdir(self.curDir)
             selFile = self.curDir + "/" + files[self.curSelection]
             if os.path.isfile(selFile):
-                self.listener.stop()
                 proc = subprocess.run(["omxplayer", selFile])
+                #Flush any keys pushed while player was open, don't use for navigation
+                curses.flushinp()
             elif os.path.isdir(selFile):
                 self.curDir = selFile
                 self.curSelection = 0
-        elif key == Key.esc or key.char == ('q'):
+        elif key == ord('q'):
             self.done = True
             return False
-        elif key.char == ('s'):
+        elif key == ord('s'):
             self.done = True
             subprocess.run(["shutdown", "-P", "now"])
             return False
-        elif key.char == ('h'):
+        elif key == ord('h'):
             print("Navigate to a file or folder with up and down arrows")
             print("enter a folder with right arrow")
             print("select a folder with right arrow")
@@ -93,8 +92,6 @@ class simplePiMediaPlayer:
             print("Escape to exit")
             print("Arrow to navigate forward backward in video")
             return True
-      #except:
-      #  pass
 
         self.updateSelection()
 

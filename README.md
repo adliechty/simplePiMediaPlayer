@@ -21,31 +21,50 @@ login username: pi
 password: rasberry
 
 # Enable WIFI, keyboard layout
-```sudo raspi-config```
+```sudo raspi-config
+```
 select System Options
 select S1 Wireless LAN to configure WIFI
 Go through prompts
 Configure Localization Options --> Locale and Localization options -> Keyboard
 System Options -> Auto login
 if asked to reboot, reboot
-```ping www.google.com```
-if success (says 64 bytes from ...", WIFI is setup
-```ctrl-c```
 
 # Update Package manager
-```sudo apt-get udpate```
-   - Takes a few min
-```sudo apt-get upgrade```
-   - Takes more than a few min, less than an hour
+```sudo apt-get udpate
 ```
+   - Takes a few min
+```sudo apt-get upgrade
+```
+   - Takes more than a few min, less than an hour
 # Install Git
-sudo apt install git
+```sudo apt install git
+```
 
-# Install omxplayer from source as no longer supported with apt install :(
+# Install omxplayer
+```sudo apt install omxplayer
+wget https://files.pimylifeup.com/omxplayer/bigbuckbunny_30sclip.mp4
+omxplayer bigbuckunny_30sclip.mpf
+```
 
-# setup keyboard layout
-"""sudo dpkg-reconfigure keyboard-configuration"""
-go through menus
-```setupcon```
-This did not work :(
+# Install usb mount
+```wget https://github.com/nicokaiser/usbmount/releases/download/0.0.24/usbmount_0.0.24_all.deb
+sudo dpkg -i usbmount_0.0.24_all.deb
+```
+auto mounts a USB drive when plugged in.
+Must get latest version from github, otherise USB doesn't get auto detected as automount is supposed to do.
+
+# Install python3
+```sudo apt install python3
+sudo rm /usr/bin/python
+sudo ln -s /usr/bin/python3 /usr/bin/python
+sudo apt install python3-pip
+```
+
+# clone this repository
+mkdir Git
+cd Git
+git clone https://github.com/adliechty/simplePiMediaPlayer.git
+cd simplePiMediaPlayer
+pip3 install pyninput
 
