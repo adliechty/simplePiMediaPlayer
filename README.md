@@ -26,7 +26,8 @@ password: rasberry
 select System Options
 select S1 Wireless LAN to configure WIFI
 Go through prompts
-Configure Localization Options --> Locale and Localization options -> Keyboard
+Configure Localization Options --> Locale and 
+Localization options -> Keyboard
 System Options -> Auto login
 if asked to reboot, reboot
 
@@ -66,5 +67,8 @@ mkdir Git
 cd Git
 git clone https://github.com/adliechty/simplePiMediaPlayer.git
 cd simplePiMediaPlayer
-pip3 install pyninput
 
+# Modify .bashrc to set program as startup
+sudo nano /home/pi/.bashrc
+add
+python /home/pi/Git/simplePiMediaPlayer/simplePiMediaPlayer.py

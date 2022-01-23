@@ -26,7 +26,8 @@ password: rasberry
 select System Options
 select S1 Wireless LAN to configure WIFI
 Go through prompts
-Configure Localization Options --> Locale and Localization options -> Keyboard
+Configure Localization Options --> Locale and 
+Localization options -> Keyboard
 System Options -> Auto login
 if asked to reboot, reboot
 
@@ -48,9 +49,11 @@ omxplayer bigbuckunny_30sclip.mpf
 ```
 
 # Install usb mount
-```sudo apt install usbmount
+```wget https://github.com/nicokaiser/usbmount/releases/download/0.0.24/usbmount_0.0.24_all.deb
+sudo dpkg -i usbmount_0.0.24_all.deb
 ```
-auto mounts a USB drive when plugged in
+auto mounts a USB drive when plugged in.
+Must get latest version from github, otherise USB doesn't get auto detected as automount is supposed to do.
 
 # Install python3
 ```sudo apt install python3
@@ -66,3 +69,7 @@ git clone https://github.com/adliechty/simplePiMediaPlayer.git
 cd simplePiMediaPlayer
 pip3 install pyninput
 
+# Modify .bashrc to set program as startup
+sudo nano /home/pi/.bashrc
+add
+python /home/pi/Git/simplePiMediaPlayer/simplePiMediaPlayer.py
