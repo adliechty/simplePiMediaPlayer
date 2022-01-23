@@ -20,41 +20,32 @@ boot
 login username: pi
 password: rasberry
 
-# Enable WIFI
-'''sudo raspi-config'''
+# Enable WIFI, keyboard layout
+```sudo raspi-config```
 select System Options
 select S1 Wireless LAN to configure WIFI
-Go through prompes
+Go through prompts
+Configure Localization Options --> Locale and Localization options -> Keyboard
+System Options -> Auto login
 if asked to reboot, reboot
-'''ping www.google.com'''
+```ping www.google.com```
 if success (says 64 bytes from ...", WIFI is setup
-'''ctrl-c'''
+```ctrl-c```
 
 # Update Package manager
-'''sudo apt-get udpate'''
+```sudo apt-get udpate```
    - Takes a few min
-'''sudo apt-get upgrade'''
+```sudo apt-get upgrade```
    - Takes more than a few min, less than an hour
-'''sudo apt update sudo apt dist-upgrade -y
-sudo rpi-update
-'''
+```
 # Install Git
 sudo apt install git
 
 # Install omxplayer from source as no longer supported with apt install :(
-   I could not get omx player to install, going to try vlc as that seems more mainstream now.
-
-# Install vlc player
-'''sudo apt install vlc
-wget https://files.pimylifeup.com/omxplayer/bigbuckbunny_30sclip.mp4
-vlc bigbuckbunny_30sclip.mp4
-'''
-   - if above shows a video then vlc was install correctly
-   - ctrl -c to exit video
 
 # setup keyboard layout
 """sudo dpkg-reconfigure keyboard-configuration"""
 go through menus
-'''setupcon'''
-THis did not work :(
+```setupcon```
+This did not work :(
 
