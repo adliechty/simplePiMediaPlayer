@@ -86,7 +86,7 @@ class simplePiMediaPlayer:
             self.win.addstr("enter a folder with right arrow\n")
             self.win.addstr("select a folder with right arrow\n")
             self.win.addstr("return to parrent directory with left arrow\n")
-            self.win.addstr()
+            self.win.addstr("\n")
             self.win.addstr("When playing File:\n")
             self.win.addstr("Space to pause\n")
             self.win.addstr("Escape to exit\n")
