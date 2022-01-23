@@ -40,7 +40,6 @@ class simplePiMediaPlayer:
 
     def updateSelection(self):
         self.win.clear()
-        self.win.addstr(str(self.key))
         self.win.addstr("simple media player.  Push h for help\n")
         self.win.addstr("-----------------------------\n")
         self.win.addstr(self.curDir + "\n")
@@ -82,6 +81,7 @@ class simplePiMediaPlayer:
             subprocess.run(["shutdown", "-P", "now"])
             return False
         elif key == ord('h'):
+            self.win.addstr("\n")
             self.win.addstr("Navigate to a file or folder with up and down arrows\n")
             self.win.addstr("enter a folder with right arrow\n")
             self.win.addstr("select a folder with right arrow\n")
