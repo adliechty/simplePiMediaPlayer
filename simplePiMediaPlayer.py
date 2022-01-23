@@ -26,6 +26,7 @@ class simplePiMediaPlayer:
         self.key = ""
         # create curses window (blank screen with text)
         self.win = curses.initscr()
+        curses.curs_set(0); # turn off blinking cursor
         self.win.keypad(True)
         self.win.nodelay(False)
         self.win.clear()
@@ -47,7 +48,7 @@ class simplePiMediaPlayer:
         i = 0
         for f in os.listdir(self.curDir):
             if i == self.curSelection:
-                self.win.addstr("    **" + f + "\n")
+                self.win.addstr("****" + f + "\n")
             else:
                 self.win.addstr("    " + f + "\n")
             i = i + 1

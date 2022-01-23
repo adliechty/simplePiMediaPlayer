@@ -26,6 +26,7 @@ class simplePiMediaPlayer:
         self.key = ""
         # create curses window (blank screen with text)
         self.win = curses.initscr()
+        curses.curs_set(0);
         self.win.keypad(True)
         self.win.nodelay(False)
         self.win.clear()
@@ -81,6 +82,7 @@ class simplePiMediaPlayer:
             subprocess.run(["shutdown", "-P", "now"])
             return False
         elif key == ord('h'):
+            self.win.addstr("\n")
             self.win.addstr("Navigate to a file or folder with up and down arrows\n")
             self.win.addstr("enter a folder with right arrow\n")
             self.win.addstr("select a folder with right arrow\n")
