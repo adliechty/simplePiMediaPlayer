@@ -32,18 +32,22 @@ System Options -> Auto login
 if asked to reboot, reboot
 
 # Update Package manager
-```sudo apt-get udpate
+```
+sudo apt-get udpate
 ```
    - Takes a few min
-```sudo apt-get upgrade
+```
+sudo apt-get upgrade
 ```
    - Takes more than a few min, less than an hour
 # Install Git
-```sudo apt install git
+```
+sudo apt install git
 ```
 
 # Install omxplayer
-```sudo apt install omxplayer
+```
+sudo apt install omxplayer
 wget https://files.pimylifeup.com/omxplayer/bigbuckbunny_30sclip.mp4
 omxplayer bigbuckunny_30sclip.mpf
 ```
@@ -57,7 +61,8 @@ auto mounts a USB drive when plugged in.
 Must get latest version from github, otherise USB doesn't get auto detected as automount is supposed to do.
 
 # Install python3
-```sudo apt install python3
+```
+sudo apt install python3
 sudo rm /usr/bin/python
 sudo ln -s /usr/bin/python3 /usr/bin/python
 sudo apt install python3-pip
@@ -70,7 +75,9 @@ git clone https://github.com/adliechty/simplePiMediaPlayer.git
 cd simplePiMediaPlayer
 
 # Using a USB gamepad to control the media player
+```
 pip3 install evdev
+```
 add this:
 KERNEL=="uinput", MODE="0666
 to top of
@@ -78,7 +85,9 @@ to top of
 run sudo udevadm control --reload-rules && sudo udevadm trigger
 
 # Modify .bashrc to set program as startup
+```
 sudo nano /home/pi/.bashrc
+```
 add
 
 \#The following is needed to get a gamepad to work with python evdev
