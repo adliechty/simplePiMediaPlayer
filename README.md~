@@ -80,13 +80,13 @@ run sudo udevadm control --reload-rules && sudo udevadm trigger
 sudo nano /home/pi/.bashrc
 add
 
-#The following is needed to get a gamepad to work with python evdev
+\#The following is needed to get a gamepad to work with python evdev
 sudo udevadm control --reload-rules && sudo udevadm trigger
 sudo modprobe uinput
-#Sleep added to wait for uinput to be loaded
+\#Sleep added to wait for uinput to be loaded
 sleep 5
-# The following program maps gampad keys to keyboard keys
+\# The following program maps gampad keys to keyboard keys
 python /home/pi/Git/simplePiMediaPlayer/mapControllerToKeys.py /dev/input/event3 &
-# simple Media Player
+\# simple Media Player
 python /home/pi/Git/simplePiMediaPlayer/simplePiMediaPlayer.py
 

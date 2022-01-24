@@ -49,7 +49,8 @@ omxplayer bigbuckunny_30sclip.mpf
 ```
 
 # Install usb mount
-```wget https://github.com/nicokaiser/usbmount/releases/download/0.0.24/usbmount_0.0.24_all.deb
+```
+wget https://github.com/nicokaiser/usbmount/releases/download/0.0.24/usbmount_0.0.24_all.deb
 sudo dpkg -i usbmount_0.0.24_all.deb
 ```
 auto mounts a USB drive when plugged in.
