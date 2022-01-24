@@ -67,7 +67,6 @@ mkdir Git
 cd Git
 git clone https://github.com/adliechty/simplePiMediaPlayer.git
 cd simplePiMediaPlayer
-pip3 install pyninput
 
 # Modify .bashrc to set program as startup
 sudo nano /home/pi/.bashrc

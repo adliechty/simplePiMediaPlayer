@@ -72,3 +72,27 @@ cd simplePiMediaPlayer
 sudo nano /home/pi/.bashrc
 add
 python /home/pi/Git/simplePiMediaPlayer/simplePiMediaPlayer.py
+
+# Using a USB gamepad to control the media player
+```sudo apt install xboxdrv
+sudo apt install evtest
+````
+Above is used to map usb game pad to keyboard keys
+Program uses, up, down, left, right, space, q, s, and h
+
+ls /dev/input/event\*
+evtest /dev/input/event1
+evtest /dev/input/event2
+do once for every event listed above.  Each time hit a key pad on controller to determine which controller is one to that event type.
+Once found record what each button is.  Here is example for the super nintendo USB pad I had from iNNEXT on amazon:
+
+ABX_X       left = 0 right = 255 center = 127
+ABS_Y       up = 0 down = 255 center = 127
+BTN_BASE4   0, 1    start
+BTN_BASE3   0, 1    select
+BTN_TOP     0, 1    Y
+BTN_TRIGGER 0, 1  X
+BTN_THUMB   0, 1  A
+BTN_THUMB2  0, 1  B
+BTN_TOP2    0, 1  top left
+BTN_PINKIE  0, 1  top right
