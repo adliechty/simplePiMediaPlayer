@@ -68,7 +68,7 @@ class simplePiMediaPlayer:
             files = os.listdir(self.curDir)
             selFile = self.curDir + "/" + files[self.curSelection]
             if os.path.isfile(selFile):
-                proc = subprocess.run(["omxplayer", selFile])
+                proc = subprocess.run(["omxplayer", selFile, "-o", "alsa"])
                 #Flush any keys pushed while player was open, don't use for navigation
                 curses.flushinp()
             elif os.path.isdir(selFile):
