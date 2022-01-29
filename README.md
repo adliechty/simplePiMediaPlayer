@@ -100,3 +100,29 @@ python /home/pi/Git/simplePiMediaPlayer/mapControllerToKeys.py /dev/input/event3
 \# simple Media Player
 python /home/pi/Git/simplePiMediaPlayer/simplePiMediaPlayer.py
 
+# Setup audio device for playback
+```
+aplay -l
+```
+note: the card number:  eg card 0
+note device number
+note subdevice #
+
+card **0**: USB [name of device], device **0**: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdeivce #0: subdeivce #**0**
+
+numbers listed in bold above
+```
+sudo nano /user/share/alsa/alsa.conf
+```
+modify
+defaults.ctl.card 0
+defaults.pcm.card 0
+defaults.pcm.device 0
+defaults.pcm.subdevice 0
+to match the numbers found above
+```
+reboot
+```
+audo with omx player should now work with -o alsa option!
